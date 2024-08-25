@@ -1,0 +1,23 @@
+header {
+    display: flex;
+    border-bottom: 1px solid black;
+    justify-content: space-around;
+}
+
+
+ul {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+li {
+    list-style: none;
+    border: 1px solid black;
+    padding: 0.5rem;
+}
+
+nav {
+
+}
+
