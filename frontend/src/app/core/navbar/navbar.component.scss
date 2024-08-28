@@ -1,23 +1,44 @@
-header {
-    display: flex;
-    border-bottom: 1px solid black;
-    justify-content: space-around;
-}
+@import '../../../styles.scss';
 
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: $light-blue;
+    box-shadow: $default-shadow;
+}
 
 ul {
     display: flex;
+    justify-content: space-around;
     align-items: center;
-    gap: 1rem;
+    gap: 1.6rem;
 }
 
 li {
     list-style: none;
+
+    cursor: pointer;
+    color: $blue;
+    font-weight: 500;
+
+    a {
+        text-decoration: none;
+        padding: 0.8rem;
+
+        &:visited,
+        &:link {
+            color: $blue;
+        }
+
+        &:hover {
+            color: $white;
+        }
+    }
+
+
+}
+
+.border {
     border: 1px solid black;
-    padding: 0.5rem;
 }
-
-nav {
-
-}
-
