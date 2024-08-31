@@ -1,0 +1,22 @@
+@import '../../../styles.scss';
+
+
+.flex {
+    display: flex;
+    gap: 1rem;
+    padding: 0.8rem;
+
+    color: $blue;
+}
+
+a {
+    &:visited,
+    &:link {
+        color: $blue;
+    }
+
+    &:hover {
+        color: $white;
+    }
+}
+

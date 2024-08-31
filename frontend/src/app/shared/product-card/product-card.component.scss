@@ -1,0 +1,20 @@
+@import '../../../styles.scss';
+
+
+.product-card {
+    width: 15rem;
+}
+
+.button {
+    @include square-rounded-button($blue, $white);
+    margin: 0 auto;
+}
+
+.font-size-increased {
+    font-size: 1.2rem;
+    border: 1px solid red;
+}
+
+.image {
+
+}

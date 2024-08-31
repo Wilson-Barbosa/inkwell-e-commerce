@@ -1,1 +1,26 @@
-<p>login works!</p>
+<mat-card class="card" appearance="outlined">
+    <mat-card-content>
+
+        <h4>Login</h4>
+
+        <form class="flex-column form-gap">
+            <div class="flex-column">
+                <label for="email">Email</label>
+                <input id="email" type="email">
+            </div>
+
+            <div class="flex-column">
+                <label for="password">Password</label>
+                <input id="password" type="password">
+            </div>
+
+            <button class="width-100 button" (click)="makeLogin()">Login</button>
+        </form>
+
+        <mat-divider class="divider"></mat-divider>
+        <p class="login-option">Don't have an account?<a [routerLink]="'/register'">Register</a></p>
+    </mat-card-content>
+
+</mat-card>
+
+

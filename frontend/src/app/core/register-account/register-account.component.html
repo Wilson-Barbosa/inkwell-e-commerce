@@ -1,1 +1,29 @@
-<p>register-account works!</p>
+<mat-card class="card" appearance="outlined">
+    <mat-card-content>
+
+        <h4>Register</h4>
+
+        <form class="flex-column form-gap">
+            <div class="flex-column">
+                <label for="name">Name</label>
+                <input id="name" type="email">
+            </div>
+
+            <div class="flex-column">
+                <label for="email">Email</label>
+                <input id="email" type="email">
+            </div>
+
+            <div class="flex-column">
+                <label for="password">Password</label>
+                <input id="password" type="password">
+            </div>
+
+            <button class="width-100 button" (click)="registerAccount()">Register</button>
+        </form>
+
+        <mat-divider class="divider"></mat-divider>
+        <p class="login-option">Already registered?<a [routerLink]="'/login'">Login</a></p>
+    </mat-card-content>
+
+</mat-card>
