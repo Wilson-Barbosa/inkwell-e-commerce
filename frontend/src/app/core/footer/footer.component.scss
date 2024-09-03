@@ -1,0 +1,26 @@
+@import '../../../styles.scss';
+
+footer {
+    padding: 2rem;
+    background-color: $light-blue;
+}
+
+.icon-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    font-size: 2rem;
+}
+
+a {
+    @include anchor-reset($blue);
+    color: $blue;
+}
+
+p {
+    text-align: center;
+    font-size: 0.9rem;
+}
