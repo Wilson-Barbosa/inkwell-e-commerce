@@ -6,17 +6,17 @@
     gap: 1rem;
     padding: 0.8rem;
 
-    color: $blue;
+    color: var(--primary);
 }
 
 a {
     &:visited,
     &:link {
-        color: $blue;
+        color: var(--primary);
     }
 
     &:hover {
-        color: $white;
+        color: var(--white);
     }
 }
 

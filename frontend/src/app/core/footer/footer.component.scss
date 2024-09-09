@@ -2,7 +2,7 @@
 
 footer {
     padding: 2rem;
-    background-color: $light-blue;
+    background-color: var(--secondary);
 }
 
 .icon-container {
@@ -16,8 +16,8 @@ footer {
 }
 
 a {
-    @include anchor-reset($blue);
-    color: $blue;
+    @include anchor-reset(var(--primary));
+    color: var(--primary);
 }
 
 p {

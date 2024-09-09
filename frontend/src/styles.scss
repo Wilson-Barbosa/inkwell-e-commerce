@@ -10,7 +10,8 @@
     --warning: #ffa500;
     --success: #008000;
     --danger: #ff0000;
-    --white: #e7e7e7;
+    --gray: #e7e7e7;
+    --white: #ffffff;
     --black: #1f1f1f;
 }
 
@@ -50,10 +51,10 @@ $default-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0p
 
 @mixin rounded-input {
     padding: 0.7rem;
-    background-color: $darker-white;
+    background-color: var(--white);
 
     border-radius: 5px;
-    border: 0.5px solid $blue;
+    border: 0.5px solid var(--primary);
 
     &:focus {
         outline: none;

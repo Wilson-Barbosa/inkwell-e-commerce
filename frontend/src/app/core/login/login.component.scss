@@ -16,7 +16,7 @@
 
 a {
     padding: 0.8rem;
-    @include anchor-reset($blue);
+    @include anchor-reset(var(--primary));
 }
 
 .width-100 {
@@ -33,7 +33,7 @@ a {
 }
 
 button {
-    @include square-rounded-button($blue, $white);
+    @include square-rounded-button(var(--primary), var(--secondary));
     font-size: 1.05rem;
 }
 
