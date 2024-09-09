@@ -1,12 +1,11 @@
 @import '../../../styles.scss';
 
-
 .product-card {
     width: 15rem;
 }
 
 .button {
-    @include square-rounded-button($blue, $white);
+    @include square-rounded-button(var(--primary), var(--text-color));
     margin: 0 auto;
     width: 100%;
     font-size: 1.2rem;

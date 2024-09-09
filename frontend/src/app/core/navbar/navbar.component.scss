@@ -22,21 +22,20 @@ li {
     color: $blue;
     font-weight: 500;
 
-    a {
-        text-decoration: none;
-        padding: 0.8rem;
+}
 
-        &:visited,
-        &:link {
-            color: $blue;
-        }
+a {
+    text-decoration: none;
+    padding: 0.8rem;
 
-        &:hover {
-            color: $white;
-        }
+    &:visited,
+    &:link {
+        color: $blue;
     }
 
-
+    &:hover {
+        color: $white;
+    }
 }
 
 .border {
