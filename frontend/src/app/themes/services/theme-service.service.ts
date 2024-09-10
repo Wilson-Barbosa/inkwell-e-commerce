@@ -13,20 +13,17 @@ export class ThemeServiceService {
             primary: "#005CBB",
             secondary: "#D7E3FF",
             text: "#ffffff",
-            background: "#000000",
+            background: "#080808",
+            background2: "#272727"
         }],
         [ThemeType.LIGHT, {
             primary: "#005CBB",
             secondary: "#D7E3FF",
             text: "#000000",
             background: "#ffffff",
+            background2: "#f7f7f7"
         }],
-        [ThemeType.LIGHT, {
-            primary: "#005CBB",
-            secondary: "#D7E3FF",
-            text: "#000000",
-            background: "#ffffff",
-        }]
+        // TODO add a colorblind theme here
     ]);
 
     constructor() { }
@@ -39,10 +36,11 @@ export class ThemeServiceService {
 
     // Receives a type for a parameter, then changes the variables colors on .root based upon it
     applyColors(theme: ThemeType): void {
-        document.documentElement.style.setProperty("--text-color", this.themes.get(theme)!.text);
-        document.documentElement.style.setProperty("--background", this.themes.get(theme)!.background);
         document.documentElement.style.setProperty("--primary", this.themes.get(theme)!.primary);
         document.documentElement.style.setProperty("--secondary", this.themes.get(theme)!.secondary);
+        document.documentElement.style.setProperty("--text-color", this.themes.get(theme)!.text);
+        document.documentElement.style.setProperty("--background", this.themes.get(theme)!.background);
+        document.documentElement.style.setProperty("--background2", this.themes.get(theme)!.background2);
     }
 
     // Looks in the local storage for a theme, if does not find it then returns the default as light

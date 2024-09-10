@@ -1,0 +1,100 @@
+/* Classes containing only the colors. I'm adding these so the components can easily use it */
+
+// Primary
+.background-primary {
+    background-color: var(--background);
+}
+
+.text-primary {
+    color: var(--text-color);
+}
+
+
+// Secondary
+.background-secondary {
+    background-color: var(--secondary);
+}
+
+.text-secondary {
+    color: var(--text-color);
+}
+
+
+// Warning
+.background-warning {
+    background-color: var(--warning);
+}
+
+.text-warning {
+    color: var(--warning);
+}
+
+
+// Success
+.background-success {
+    background-color: var(--success);
+}
+
+.text-success {
+    color: var(--success);
+}
+
+
+// Danger
+.background-danger {
+    background-color: var(--danger);
+}
+
+.text-danger {
+    color: var(--danger);
+}
+
+
+// Black
+.background-black {
+    background-color: var(--black);
+}
+
+.text-black {
+    color: var(--black);
+}
+
+
+// White
+.background-white {
+    background-color: var(--white);
+}
+
+.text-white {
+    color: var(--white);
+}
+
+
+// Gray
+.background-gray {
+    background-color: var(--gray);
+}
+
+.text-gray {
+    color: var(--gray);
+}
+
+.dark-gray {
+    background-color: var(--dark-gray);
+}
+
+
+// Some ui librarys have built-in colors and styles, so this class adds the colors to them
+.default-background-color {
+    background-color: var(--background) !important;
+}
+
+.default-background-color2 {
+    background-color: var(--background2) !important;
+}
+
+.default-text-color {
+    color: var(--text-color);
+}
+
+

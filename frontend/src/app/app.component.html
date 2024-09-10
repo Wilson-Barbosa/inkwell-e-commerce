@@ -1,10 +1,8 @@
 <app-navbar></app-navbar>
 
-<div>
-
+<div class="theme-option-container">
     <button *ngIf="getActiveTheme() === 'dark' " class="round" (click)="setLightMode()" ><i class="bi bi-sun-fill"></i></button>
     <button *ngIf="getActiveTheme() === 'light' " class="round" (click)="setDarkMode()" ><i class="bi bi-moon-stars-fill"></i></button>
-
 </div>
 
 <!-- Content page goes here -->

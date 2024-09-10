@@ -1,14 +1,14 @@
 <!-- Display this for not logged users -->
-<div *ngIf="isUserLogged" class="flex">
-    <mat-icon fontIcon="shopping_cart"></mat-icon>
+<div *ngIf="isUserLogged" class="flex text-secondary">
+    <div class="font-container"><i class="bi bi-cart4"></i></div>
     <a [routerLink]=" 'login' ">Login</a>
-    <span>|</span>
+    <span class="text-warning">|</span>
     <a [routerLink]=" 'register' ">Register</a>
 </div>
 
 <!-- Display this for logged users -->
-<div *ngIf="!isUserLogged" class="flex">
-    <mat-icon fontIcon="shopping_cart"></mat-icon>
+<div *ngIf="!isUserLogged" class="flex text-secondary" >
+    <div class="font-container"><i class="bi bi-cart4"></i></div>
     <mat-icon fontIcon="account_circle"></mat-icon>
     <p>Paul of Tarsus</p>
 </div>

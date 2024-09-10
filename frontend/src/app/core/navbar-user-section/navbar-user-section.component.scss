@@ -6,13 +6,13 @@
     gap: 1rem;
     padding: 0.8rem;
 
-    color: var(--primary);
+    color: var(--secondary);
 }
 
 a {
     &:visited,
     &:link {
-        color: var(--primary);
+        color: var(--secondary);
     }
 
     &:hover {
@@ -20,3 +20,7 @@ a {
     }
 }
 
+.font-container {
+    margin-right: 1rem;
+    font-size: 1.3rem;
+}

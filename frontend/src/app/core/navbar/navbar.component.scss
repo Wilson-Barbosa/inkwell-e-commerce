@@ -4,7 +4,7 @@ nav {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: var(--secondary);
+    background-color: var(--primary);
     box-shadow: $default-shadow;
 }
 
@@ -19,7 +19,7 @@ li {
     list-style: none;
 
     cursor: pointer;
-    color: var(--primary);
+    color: var(--secondary);
     font-weight: 500;
 
 }
@@ -30,7 +30,7 @@ a {
 
     &:visited,
     &:link {
-        color: var(--primary);
+        color: var(--secondary);
     }
 
     &:hover {

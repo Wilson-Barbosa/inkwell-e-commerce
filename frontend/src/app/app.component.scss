@@ -5,10 +5,19 @@
 
 .round {
     border-radius: 50%;
-    height: 1.8rem;
-    width: 1.8rem;
+    height: 1.5rem;
+    width: 1.5rem;
 
-    border: none;
+    border: 1px solid var(--black);
 
     cursor: pointer;
+
+    font-size: 0.7rem;
+}
+
+.theme-option-container {
+    margin-top: 0.4rem;
+    margin-right: 0.4rem;
+    display: flex;
+    justify-content: end;
 }
