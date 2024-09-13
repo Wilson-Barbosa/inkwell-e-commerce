@@ -1,5 +1,5 @@
-import { Login } from "./Login";
-
-export interface RegisterAccount extends Login {
+export interface RegisterAccount {
     name: string;
+    email: string;
+    password: string;
 }

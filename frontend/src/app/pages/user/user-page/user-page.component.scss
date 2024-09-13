@@ -1,0 +1,45 @@
+.user-section-container {
+    display: flex;
+    height: 100%;
+}
+
+.side-content-container {
+    flex-grow: 1; /* Makes the content take the remaining space */
+    margin: 1.2rem;
+    border: 1px solid black;
+}
+
+ul {
+    margin: 0;
+    flex-shrink: 0; /* Prevents shrinking */
+
+    list-style: none;
+
+    border-right: 1px solid var(--text-color);
+    padding: 0;
+}
+
+li {
+    padding: 1rem;
+    &:hover {
+        cursor: pointer;
+        background-color: var(--secondary);
+    }
+}
+
+a {
+    text-decoration: none;
+    font-weight: 400;
+
+    &:visited,
+    &:link {
+        color: var(--primary);
+    }
+
+}
+
+.icon {
+    margin-right: 1.3rem;
+}
+
+

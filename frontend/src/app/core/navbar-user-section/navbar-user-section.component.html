@@ -9,6 +9,5 @@
 <!-- Display this for logged users -->
 <div *ngIf="!isUserLogged" class="flex text-secondary" >
     <div class="font-container"><i class="bi bi-cart4"></i></div>
-    <mat-icon fontIcon="account_circle"></mat-icon>
-    <p>Paul of Tarsus</p>
+    <a [routerLink]=" 'user-page' "><span><i class="bi bi-person-circle font"></i> Paul of Tarsus</span></a>
 </div>

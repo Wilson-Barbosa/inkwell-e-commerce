@@ -1,0 +1,17 @@
+<div class="user-section-container">
+
+    <ul>
+        <a [routerLink]=" '/user-page/profile' "><li> <i class="bi bi-person-lines-fill icon"></i>My Profile</li> </a>
+        <a [routerLink]=" 'purchase-history' "><li> <i class="bi bi-bag-fill icon"></i>Purchase's History</li> </a>
+        <a [routerLink]=" 'my-reviews' "><li> <i class="bi bi-chat-left-dots-fill icon"></i>My Reviews</li> </a>
+        <a [routerLink]=" 'favorites' "><li> <i class="bi bi-heart-fill icon"></i>My Favorites</li> </a>
+        <a [routerLink]=" 'preferences' "><li> <i class="bi bi-gear-fill icon"></i>Preferences</li> </a>
+    </ul>
+
+    <div class="side-content-container">
+        <router-outlet />
+    </div>
+
+</div>
+
+

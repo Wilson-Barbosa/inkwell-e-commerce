@@ -12,6 +12,6 @@ import { NgIf } from '@angular/common';
 })
 export class NavbarUserSectionComponent {
 
-    isUserLogged: boolean = true;
+    isUserLogged: boolean = false;
 
 }
