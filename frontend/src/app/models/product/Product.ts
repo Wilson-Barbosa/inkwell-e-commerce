@@ -3,7 +3,7 @@ import { ProductReview } from "./ProductReview";
 
 export interface Product {
     id: number
-    name: string;
+    title: string;
     description: string;
     price: number;
     discount: number;

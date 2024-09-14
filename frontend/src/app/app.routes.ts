@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
-import { LoginComponent } from './core/login/login.component';
-import { RegisterAccountComponent } from './core/register-account/register-account.component';
+import { LoginComponent } from './core/components/login/login.component';
+import { RegisterAccountComponent } from './core/components/register-account/register-account.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { SearchProductComponent } from './pages/search-product/search-product.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
@@ -31,7 +31,6 @@ export const routes: Routes = [
             { path: 'preferences', component: PreferencesComponent}
         ]
     },
-
 
     // Redirections
     { path: '', redirectTo: '/home', pathMatch: 'full' }, // redirects to the home page

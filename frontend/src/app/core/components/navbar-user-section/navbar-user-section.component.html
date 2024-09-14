@@ -1,5 +1,5 @@
 <!-- Display this for not logged users -->
-<div *ngIf="isUserLogged" class="flex text-secondary">
+<div *ngIf="!isUserLogged" class="flex text-secondary">
     <div class="font-container"><i class="bi bi-cart4"></i></div>
     <a [routerLink]=" 'login' ">Login</a>
     <span class="text-warning">|</span>
@@ -7,7 +7,7 @@
 </div>
 
 <!-- Display this for logged users -->
-<div *ngIf="!isUserLogged" class="flex text-secondary" >
+<div *ngIf="isUserLogged" class="flex text-secondary" >
     <div class="font-container"><i class="bi bi-cart4"></i></div>
     <a [routerLink]=" 'user-page' "><span><i class="bi bi-person-circle font"></i> Paul of Tarsus</span></a>
 </div>

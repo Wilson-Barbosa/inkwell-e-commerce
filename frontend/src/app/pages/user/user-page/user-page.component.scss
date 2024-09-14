@@ -6,17 +6,13 @@
 .side-content-container {
     flex-grow: 1; /* Makes the content take the remaining space */
     margin: 1.2rem;
-    border: 1px solid black;
 }
 
 ul {
-    margin: 0;
-    flex-shrink: 0; /* Prevents shrinking */
-
     list-style: none;
-
-    border-right: 1px solid var(--text-color);
+    margin: 0;
     padding: 0;
+    flex-shrink: 0; /* Prevents shrinking */
 }
 
 li {

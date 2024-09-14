@@ -1,12 +1,25 @@
 <mat-card class="product-card default-background-color2 default-text-color" appearance="outlined">
     <img mat-card-image src="cat-photo.png" class="image">
 
-    <mat-card-content>
-        <p class="global-selector">Little cute cat, asks for love while looking to your eyes!</p>
-    </mat-card-content>
+    <div class="card-content">
 
-    <mat-card-actions>
-        <!-- <button class="button">Buy now</button> -->
+        <!-- Product's title or description -->
+        <p class="product-title">
+            <a href="">{{ product.title }}</a>
+        </p>
+
+        <!--  -->
+        <app-rating-star></app-rating-star>
+
+        <!-- Princing information -->
+        <div *ngIf="product.discount" >
+            <span class="original-price">{{ originalPrice | usCurrency }}</span>
+            <span class="discount text-success">{{ product.discount }}%</span>
+        </div>
+
+        <p class="current-price">{{ currentPrice | usCurrency }}</p>
+
         <button class="button">Add to cart <i class="bi bi-cart-fill icon"></i></button>
-    </mat-card-actions>
+    </div>
+
 </mat-card>

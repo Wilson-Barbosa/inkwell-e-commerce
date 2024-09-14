@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ThemeSelectorComponent } from './theme-selector.component';
+import { RatingStarComponent } from './rating-star.component';
 
-describe('ThemeSelectorComponent', () => {
-  let component: ThemeSelectorComponent;
-  let fixture: ComponentFixture<ThemeSelectorComponent>;
+describe('RatingStarComponent', () => {
+  let component: RatingStarComponent;
+  let fixture: ComponentFixture<RatingStarComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ThemeSelectorComponent]
+      imports: [RatingStarComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ThemeSelectorComponent);
+    fixture = TestBed.createComponent(RatingStarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

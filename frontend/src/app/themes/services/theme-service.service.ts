@@ -21,7 +21,7 @@ export class ThemeServiceService {
             secondary: "#D7E3FF",
             text: "#000000",
             background: "#ffffff",
-            background2: "#f7f7f7"
+            background2: "#f1f1f1"
         }],
         // TODO add a colorblind theme here
     ]);

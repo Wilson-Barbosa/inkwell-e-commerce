@@ -1,8 +1,8 @@
 import { ThemeServiceService } from './themes/services/theme-service.service';
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { NavbarComponent } from "./core/navbar/navbar.component";
-import { FooterComponent } from "./core/footer/footer.component";
+import { NavbarComponent } from "./core/components/navbar/navbar.component";
+import { FooterComponent } from "./core/components/footer/footer.component";
 import { ThemeType } from './themes/ThemeType';
 import { NgIf } from '@angular/common';
 

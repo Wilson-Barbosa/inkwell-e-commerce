@@ -4,6 +4,10 @@
     width: 15rem;
 }
 
+.card-content {
+    margin: 0.5rem;
+}
+
 .button {
     @include square-rounded-button(var(--primary), var(--secondary));
     margin: 0 auto;
@@ -22,4 +26,31 @@
 
 .icon {
     font-size: 1.2rem;
+}
+
+.product-title {
+
+    font-size: 0.85rem;
+    cursor: pointer;
+
+    a {
+        color: var(--text-color);
+    }
+    &:hover {
+        color: var(--warning);
+    }
+}
+
+.discount {
+    margin-left: 0.7rem;
+}
+
+.original-price {
+    text-decoration: line-through;
+    font-size: 0.9rem;
+}
+
+.current-price {
+    font-weight: 600;
+    text-align: end;
 }

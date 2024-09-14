@@ -84,7 +84,7 @@
 }
 
 
-// Some ui librarys have built-in colors and styles, so this class adds the colors to them
+// Some ui librarys have built-in colors and styles, so this class adds (forces) the default colors for their components
 .default-background-color {
     background-color: var(--background) !important;
 }
@@ -95,6 +95,7 @@
 
 .default-text-color {
     color: var(--text-color);
+
 }
 
 

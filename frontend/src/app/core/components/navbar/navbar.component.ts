@@ -3,6 +3,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { NavbarUserSectionComponent } from '../navbar-user-section/navbar-user-section.component';
 
+
 @Component({
     selector: 'app-navbar',
     standalone: true,
@@ -13,6 +14,5 @@ import { NavbarUserSectionComponent } from '../navbar-user-section/navbar-user-s
 export class NavbarComponent {
 
     isUserLogged: boolean = false;
-
 
 }
