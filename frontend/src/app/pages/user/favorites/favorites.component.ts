@@ -13,35 +13,40 @@ import { ProductCardComponent } from '../../../shared/product-card/product-card.
 export class FavoritesComponent {
 
     productList: ProductCard[] = [
-        {
-          id: 1,
-          title: "The Angular Journey",
-          price: 49.99,
-          discount: 0
-        },
-        {
-          id: 2,
-          title: "Spring Boot in Action",
-          price: 59.99,
-          discount: 15
-        },
-        {
-          id: 3,
-          title: "Java Mastery",
-          price: 45.00,
-          discount: 5
-        },
-        {
-          id: 4,
-          title: "Web Development with TypeScript",
-          price: 39.99,
-          discount: 20
-        },
-        {
-          id: 5,
-          title: "Learning SCSS for Angular",
-          price: 29.99,
-          discount: 25
-        }
+        // {
+        //   id: 1,
+        //   title: "The Angular Journey",
+        //   price: 49.99,
+        //   discount: 0,
+        //   score: 3
+        // },
+        // {
+        //   id: 2,
+        //   title: "Spring Boot in Action",
+        //   price: 59.99,
+        //   discount: 15,
+        //   score: 1.5
+        // },
+        // {
+        //   id: 3,
+        //   title: "Java Mastery",
+        //   price: 45.00,
+        //   discount: 5,
+        //   score: 0.5
+        // },
+        // {
+        //   id: 4,
+        //   title: "Web Development with TypeScript",
+        //   price: 39.99,
+        //   discount: 20,
+        //   score: 0
+        // },
+        // {
+        //   id: 5,
+        //   title: "Learning SCSS for Angular",
+        //   price: 29.99,
+        //   discount: 25,
+        //   score: 4
+        // }
     ]
 }

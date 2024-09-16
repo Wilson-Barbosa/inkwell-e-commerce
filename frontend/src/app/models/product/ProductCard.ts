@@ -3,4 +3,6 @@ export interface ProductCard {
     title: string;
     price: number;
     discount: number;
+    score: number;
+    numberOfRatings: number;
 }

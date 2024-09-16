@@ -9,7 +9,7 @@
         </p>
 
         <!--  -->
-        <app-rating-star></app-rating-star>
+        <app-rating-star [productScore]="product.score" [numberOfRatings]="product.numberOfRatings"></app-rating-star>
 
         <!-- Princing information -->
         <div *ngIf="product.discount" >

@@ -15,7 +15,6 @@ import { UsCurrencyPipe } from '../../core/pipes/us-currency.pipe';
 })
 export class ProductCardComponent implements OnInit {
 
-
     @Input() product!: ProductCard;
 
     originalPrice: number = 0;
@@ -29,7 +28,7 @@ export class ProductCardComponent implements OnInit {
         this.displayPrice();
     }
 
-    // Checks if there's a discount for this product, if there is
+    // Checks if there's a discount for this product and alters the template based on it
     displayPrice(): void {
 
         this.originalPrice = this.product.price;

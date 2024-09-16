@@ -1,4 +1,17 @@
 .icon {
     padding: 0.1rem;
+}
+
+.container {
+    display: inline-flex;
+    gap: 0.5rem;
+}
+
+.not-rated {
+    font-size: 0.85rem;
+    font-style: italic;
+}
+
+.cursor-pointer {
     cursor: pointer;
 }
