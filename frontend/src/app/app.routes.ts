@@ -11,6 +11,7 @@ import { PurchaseHistoryComponent } from './pages/user/purchase-history/purchase
 import { FavoritesComponent } from './pages/user/favorites/favorites.component';
 import { PreferencesComponent } from './pages/user/preferences/preferences.component';
 import { ProfileComponent } from './pages/user/profile/profile.component';
+import { ProductPageComponent } from './pages/product-page/product-page.component';
 
 export const routes: Routes = [
 
@@ -20,6 +21,7 @@ export const routes: Routes = [
     { path: 'register', component: RegisterAccountComponent },
     { path: 'contact-us', component: ContactComponent },
     { path: 'search-product', component: SearchProductComponent },
+    { path: 'product-page/:id', component: ProductPageComponent },
 
     // protected routes, available only to logged users
     { path: 'user-page', component: UserPageComponent,
