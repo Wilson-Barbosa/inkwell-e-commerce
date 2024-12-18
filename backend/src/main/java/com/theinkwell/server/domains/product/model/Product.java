@@ -55,4 +55,6 @@ public abstract class Product implements Serializable {
     @OneToMany(mappedBy = "product")
     private List<ProductCart> productCarts;
     
+    @OneToMany(mappedBy = "product")
+    private List<BundleItem> bundleItems;
 }

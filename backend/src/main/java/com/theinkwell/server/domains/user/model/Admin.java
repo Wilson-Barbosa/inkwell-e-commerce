@@ -2,6 +2,7 @@ package com.theinkwell.server.domains.user.model;
 
 import java.util.List;
 
+import com.theinkwell.server.domains.product.model.Bundle;
 import com.theinkwell.server.domains.product.model.Product;
 
 import jakarta.persistence.Entity;
@@ -23,5 +24,8 @@ public class Admin extends Person{
     
     @OneToMany(mappedBy = "createdBy")
     private List<Product> createdProducts;
+
+    @OneToMany(mappedBy = "createdBy")
+    private List<Bundle> createdBundles;
 
 }
