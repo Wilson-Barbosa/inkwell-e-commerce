@@ -64,6 +64,7 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- Spring security is disabled until the implementation of authentication via jwt -->
 		<!-- <dependency>
       		<groupId>org.springframework.boot</groupId>
       		<artifactId>spring-boot-starter-security</artifactId>

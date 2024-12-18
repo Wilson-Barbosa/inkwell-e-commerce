@@ -1,0 +1,44 @@
+package com.theinkwell.server.domains.cart.model;
+
+import java.time.Instant;
+import java.util.List;
+
+import com.theinkwell.server.domains.user.model.Customer;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+
+@Entity @Table
+@Setter @Getter @AllArgsConstructor @NoArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString
+public class ShoppingCart {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
+    private Long id;
+    private Instant createdAt;
+    private Instant lastUpdate;
+
+    @OneToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+    
+    @OneToMany(mappedBy = "shoppingCart")
+    private List<ProductCart> productCart;
+
+}
