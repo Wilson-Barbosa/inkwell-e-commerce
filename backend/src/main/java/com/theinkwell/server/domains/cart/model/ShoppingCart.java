@@ -21,7 +21,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 
-@Entity @Table
+@Entity @Table(name = "Shopping_cart")
 @Setter @Getter @AllArgsConstructor @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
@@ -32,7 +32,7 @@ public class ShoppingCart {
     @EqualsAndHashCode.Include
     private Long id;
     private Instant createdAt;
-    private Instant lastUpdate;
+    private Instant lastUpdated;
 
     @OneToOne
     @JoinColumn(name = "customer_id")

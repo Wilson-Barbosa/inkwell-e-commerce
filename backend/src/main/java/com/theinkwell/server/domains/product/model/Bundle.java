@@ -31,13 +31,13 @@ public class Bundle {
     @EqualsAndHashCode.Include
     private Long id;
 
-    private Instant createAt;
+    private Instant createdAt;
 
     @OneToMany(mappedBy = "bundle")
     private List<BundleItem> bundleItems;
 
     @ManyToOne
-    @JoinColumn(name = "admin_id")
+    @JoinColumn(name = "created_by")
     private Admin createdBy;
     
 }

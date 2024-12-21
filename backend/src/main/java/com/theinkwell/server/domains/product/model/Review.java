@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Entity @Table
+@Entity @Table(name = "Review")
 @Getter @Setter @AllArgsConstructor @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
@@ -32,6 +32,7 @@ public class Review implements Serializable {
     private String title;
     private String description;
     private Instant createdAt;
+    private Instant lastUpdated;
     private Integer rating;
 
     @ManyToOne

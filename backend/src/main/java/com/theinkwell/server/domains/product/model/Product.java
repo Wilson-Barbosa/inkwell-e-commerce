@@ -1,10 +1,12 @@
 package com.theinkwell.server.domains.product.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.List;
 
 import com.theinkwell.server.domains.cart.model.ProductCart;
+import com.theinkwell.server.domains.order.model.OrderItem;
 import com.theinkwell.server.domains.user.model.Admin;
 
 import jakarta.persistence.Entity;
@@ -22,7 +24,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Entity @Table
+@Entity @Table(name = "Product")
 @Inheritance(strategy = InheritanceType.JOINED)
 @Getter @Setter @AllArgsConstructor @NoArgsConstructor 
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -35,11 +37,11 @@ public abstract class Product implements Serializable {
 
     private String title;
     private String description;
-    private List<String> images;
+    private List<String> imagesList;
     private Integer quantity;
-    private Double price;
+    private BigDecimal price;
     private Double discount;
-    private Instant createAt;
+    private Instant createdAt;
     private Double rating;
 
     @ManyToOne
@@ -57,4 +59,8 @@ public abstract class Product implements Serializable {
     
     @OneToMany(mappedBy = "product")
     private List<BundleItem> bundleItems;
+
+    @OneToMany(mappedBy = "product")
+    private List<OrderItem> orderItems;
+
 }
