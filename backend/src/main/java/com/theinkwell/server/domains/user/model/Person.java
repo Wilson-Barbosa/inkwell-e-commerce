@@ -2,6 +2,10 @@ package com.theinkwell.server.domains.user.model;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.Collection;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -20,7 +24,7 @@ import lombok.Setter;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Getter @Setter @AllArgsConstructor @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Person implements Serializable {
+public class Person implements UserDetails {
 
     @Id
     @EqualsAndHashCode.Include
@@ -32,5 +36,21 @@ public class Person implements Serializable {
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getAuthorities'");
+    }
+
+    @Override
+    public String getUsername() {
+        return this.email;
+    }
+
+    @Override
+    public String getPassword(){
+        return this.password;
+    }
 
 }

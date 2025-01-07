@@ -36,5 +36,9 @@ public class Role implements Serializable{
 
     @OneToMany(mappedBy = "role")
     private List<Person> person;
+
+    public Role(RoleEnum role){
+        this.role = role;
+    }
     
 }
