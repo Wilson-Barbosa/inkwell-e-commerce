@@ -21,7 +21,7 @@ public class AuthenticationController {
     }
 
     /**
-     * Returns a ResponseEntity with an empty body in case of a successful request.
+     * Returns a ResponseEntity with an empty body in case of a successful register request.
      */
     @PostMapping("register")
     public ResponseEntity<Void> registerNewUser(@RequestBody RegisterRequest request){

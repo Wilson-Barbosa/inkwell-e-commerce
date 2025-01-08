@@ -17,7 +17,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Entity @Table(name = "Admin") @PrimaryKeyJoinColumn(name = "person_id")
+@Entity @Table(name = "Admin")
+@PrimaryKeyJoinColumn(name = "person_id")
 @Inheritance(strategy = InheritanceType.JOINED)
 @Getter @Setter @AllArgsConstructor @NoArgsConstructor 
 @ToString(callSuper = true)

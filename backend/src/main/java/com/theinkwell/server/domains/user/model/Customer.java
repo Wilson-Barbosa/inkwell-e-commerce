@@ -12,6 +12,7 @@ import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,7 +20,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Entity @Table(name = "Customer_order")
+@Entity @Table(name = "Customer")
+@PrimaryKeyJoinColumn(name = "person_id")
 @Inheritance(strategy = InheritanceType.JOINED)
 @Setter @Getter @AllArgsConstructor @NoArgsConstructor
 @ToString(callSuper = true)

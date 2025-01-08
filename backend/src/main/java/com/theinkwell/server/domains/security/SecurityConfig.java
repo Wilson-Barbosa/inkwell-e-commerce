@@ -26,6 +26,9 @@ public class SecurityConfig {
         http.authorizeHttpRequests( requests -> requests.requestMatchers(urlPath + "/auth/register").permitAll()
                                                         .requestMatchers(urlPath + "/auth/login").permitAll()
                                                         .requestMatchers("/h2-console/**").permitAll()
+                                                        .requestMatchers(urlPath + "/products/**").permitAll()
+                                                        .requestMatchers(urlPath + "/admin/**").hasRole("ADMIN")
+                                                        .requestMatchers(urlPath + "/customer/**").hasRole("CUSTOMER")
                                                         .anyRequest().authenticated()
         );
 

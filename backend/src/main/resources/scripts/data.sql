@@ -3,7 +3,6 @@
 -- I'm running each script on a separate file, because there are lots of tables
 -- so it's easier to track and debbug the app's initial state.
 
--- The h2 schema will be generated automatically, for more info check the
--- sql flyway files inside resources/db/migration/
+-- The h2 schema will be generated automatically by the application.
 
-RUNSCRIPT FROM 'src/main/resources/scripts/add_users_and_roles.sql';
+RUNSCRIPT FROM 'src/main/resources/scripts/test_1_add_roles.sql';

@@ -12,7 +12,7 @@ public class UserExceptionHandler {
     
     @ExceptionHandler
     public ResponseEntity<String> handleUserAlreadyRegisteredException(HttpServletRequest request, UserAlreadyRegisteredException e){
-        // TODO change the body to an appropriate response (probably)
+        // TODO change the body to an appropriate, modeled response
         return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
     }
 

@@ -29,16 +29,15 @@ public class Role implements Serializable{
     @EqualsAndHashCode.Include
     private Integer id;
 
-    // I believe saving it as string instead of the default integer is better,
-    // makes it more clearer inside the table
     @Enumerated(EnumType.STRING)
     private RoleEnum role;
 
     @OneToMany(mappedBy = "role")
     private List<Person> person;
 
-    public Role(RoleEnum role){
+    public Role(RoleEnum role) {
         this.role = role;
     }
     
+
 }

@@ -1,0 +1,1 @@
+INSERT INTO Role(role) VALUES (1), (2);
