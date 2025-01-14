@@ -1,4 +1,4 @@
-package com.theinkwell.server.domains.user.dto.request;
+package com.theinkwell.server.domains.user.dto;
 
 /**
  * Imutable DTO that models the body inside a Register Request.

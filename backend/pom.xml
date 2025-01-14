@@ -30,6 +30,12 @@
 		<java.version>21</java.version>
 	</properties>
 	<dependencies>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
 		
 		<!-- JPA dependency -->
 		<dependency>
@@ -110,6 +116,11 @@
       		<optional>true</optional>
     	</dependency>
 
+		<dependency>
+			<groupId>com.auth0</groupId>
+			<artifactId>java-jwt</artifactId>
+			<version>4.4.0</version>
+		</dependency>
 
 	</dependencies>
 

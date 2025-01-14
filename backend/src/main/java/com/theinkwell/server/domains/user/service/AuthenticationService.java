@@ -8,7 +8,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.theinkwell.server.domains.user.dto.request.RegisterRequest;
+import com.theinkwell.server.domains.security.JwtService;
+import com.theinkwell.server.domains.user.dto.LoginRequest;
+import com.theinkwell.server.domains.user.dto.LoginResponse;
+import com.theinkwell.server.domains.user.dto.RegisterRequest;
+import com.theinkwell.server.domains.user.exception.AuthenticationException;
 import com.theinkwell.server.domains.user.exception.UserAlreadyRegisteredException;
 import com.theinkwell.server.domains.user.model.Customer;
 import com.theinkwell.server.domains.user.model.Person;
@@ -21,11 +25,14 @@ public class AuthenticationService implements UserDetailsService{
     private final PersonRepository personRepository;
     private final PasswordEncoder passwordEncoder;
     private final RoleRepository roleRepository;
+    private final JwtService jwtService;
 
-    public AuthenticationService(PersonRepository personRepository, PasswordEncoder passwordEncoder, RoleRepository roleRepository){
+    public AuthenticationService(PersonRepository personRepository, PasswordEncoder passwordEncoder,
+                                 RoleRepository roleRepository, JwtService jwtService){
         this.passwordEncoder = passwordEncoder;
         this.personRepository = personRepository;
         this.roleRepository = roleRepository;
+        this.jwtService = jwtService;
     }
 
     @Override
@@ -57,5 +64,29 @@ public class AuthenticationService implements UserDetailsService{
         }
         
     }
+
+    /**
+     * Method that takes a DTO and attemps to process it by creating a JWT token.
+     * 
+     * @param dto the user credentials
+     * @return a dto containing a jwt token
+     * 
+     * @throws AuthenticationException if the email does not exist or if the passwords do not match
+     */
+    public LoginResponse logUserAndReturnToken(LoginRequest dto){
+        
+        UserDetails user = loadUserByUsername(dto.getEmail());
+
+        if(user == null) {
+            throw new AuthenticationException("Email does not exist.");
+        }
+
+        if(!passwordEncoder.matches(dto.getPassword(), user.getPassword())) {
+            throw new AuthenticationException("Password does not match");
+        }
+
+        return  new LoginResponse(jwtService.generateJwtToken(user));
+    }
+
     
 }

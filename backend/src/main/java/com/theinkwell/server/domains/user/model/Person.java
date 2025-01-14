@@ -1,7 +1,9 @@
 package com.theinkwell.server.domains.user.model;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -52,8 +54,8 @@ public class Person implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAuthorities'");
+        List<Role> roles = new ArrayList<>();
+        return roles;
     }
 
     @Override

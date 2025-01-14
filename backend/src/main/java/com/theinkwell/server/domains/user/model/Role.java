@@ -3,6 +3,8 @@ package com.theinkwell.server.domains.user.model;
 import java.io.Serializable;
 import java.util.List;
 
+import org.springframework.security.core.GrantedAuthority;
+
 import com.theinkwell.server.domains.user.enums.RoleEnum;
 
 import jakarta.persistence.Entity;
@@ -22,7 +24,7 @@ import lombok.Setter;
 @Entity @Table(name = "Role")
 @Getter @Setter @AllArgsConstructor @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Role implements Serializable{
+public class Role implements GrantedAuthority{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,6 +39,11 @@ public class Role implements Serializable{
 
     public Role(RoleEnum role) {
         this.role = role;
+    }
+
+    @Override
+    public String getAuthority() {
+        return role.name();
     }
     
 

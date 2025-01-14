@@ -9,12 +9,11 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig {
-    
+public class SecurityConfig {  
+      
     /**
      * Defines a custom security filter chain to be applied before http requests.
      */
@@ -23,13 +22,13 @@ public class SecurityConfig {
 
         String urlPath = "/api/v1";
 
-        http.authorizeHttpRequests( requests -> requests.requestMatchers(urlPath + "/auth/register").permitAll()
-                                                        .requestMatchers(urlPath + "/auth/login").permitAll()
-                                                        .requestMatchers("/h2-console/**").permitAll()
-                                                        .requestMatchers(urlPath + "/products/**").permitAll()
-                                                        .requestMatchers(urlPath + "/admin/**").hasRole("ADMIN")
-                                                        .requestMatchers(urlPath + "/customer/**").hasRole("CUSTOMER")
-                                                        .anyRequest().authenticated()
+        http.authorizeHttpRequests(requests -> requests.requestMatchers(urlPath + "/auth/register").permitAll()
+                                                       .requestMatchers(urlPath + "/auth/login").permitAll()
+                                                       .requestMatchers("/h2-console/**").permitAll()
+                                                       .requestMatchers(urlPath + "/products/**").permitAll()
+                                                       .requestMatchers(urlPath + "/admin/**").hasRole("ADMIN")
+                                                       .requestMatchers(urlPath + "/customer/**").hasRole("CUSTOMER")
+                                                       .anyRequest().authenticated()
         );
 
         http.headers(headers -> headers.frameOptions(frameOptions -> frameOptions.sameOrigin())); // allows the h2-console frames to be displayed
@@ -37,7 +36,7 @@ public class SecurityConfig {
 
         // this makes the authentication STATELESS, setting up the jwt feature
         http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-        
+       
         return http.build();
     }
 

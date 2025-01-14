@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.theinkwell.server.domains.user.dto.request.RegisterRequest;
+import com.theinkwell.server.domains.user.dto.LoginRequest;
+import com.theinkwell.server.domains.user.dto.LoginResponse;
+import com.theinkwell.server.domains.user.dto.RegisterRequest;
 import com.theinkwell.server.domains.user.service.AuthenticationService;
 
 @RestController
@@ -24,9 +26,19 @@ public class AuthenticationController {
      * Returns a ResponseEntity with an empty body in case of a successful register request.
      */
     @PostMapping("register")
-    public ResponseEntity<Void> registerNewUser(@RequestBody RegisterRequest request){
-        authenticationService.registerNewUser(request);
+    public ResponseEntity<Void> registerNewUser(@RequestBody RegisterRequest requestDto){
+        authenticationService.registerNewUser(requestDto);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
+
+    /**
+     * Returns a ResponseEntity with a jwt token inside the response's body.
+     */
+    @PostMapping("login")
+    public ResponseEntity<LoginResponse> logUser(@RequestBody LoginRequest requestDto){
+        return ResponseEntity.status(HttpStatus.OK)
+                             .body(authenticationService.logUserAndReturnToken(requestDto));
+    }
+
 
 }
