@@ -1,13 +1,15 @@
 <!-- Display this for not logged users -->
 <div *ngIf="!isUserLogged" class="flex text-secondary">
     <div class="font-container"><i class="bi bi-cart4"></i></div>
-    <a [routerLink]=" 'login' ">Login</a>
+    <a [routerLink]="'/login'">Login</a>
     <span class="text-warning">|</span>
-    <a [routerLink]=" 'register' ">Register</a>
+    <a [routerLink]="'/register'">Register</a>
 </div>
 
 <!-- Display this for logged users -->
 <div *ngIf="isUserLogged" class="flex text-secondary" >
     <div class="font-container"><i class="bi bi-cart4"></i></div>
-    <a [routerLink]=" 'user-page' "><span><i class="bi bi-person-circle font"></i> Paul of Tarsus</span></a>
+    <a [routerLink]=" 'user-page' "><span>{{userEmail}}</span></a>
+    <i class="bi bi-caret-down-fill"></i>
+    <button (click)="logout()">logout</button>
 </div>

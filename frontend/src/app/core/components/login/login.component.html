@@ -3,18 +3,18 @@
 
         <h4>Login</h4>
 
-        <form class="flex-column form-gap">
+        <form class="flex-column form-gap" [formGroup]="loginForm">
             <div class="flex-column">
                 <label for="email">Email</label>
-                <input id="email" type="email">
+                <input id="email" type="email" formControlName="email" name="email">
             </div>
 
             <div class="flex-column">
                 <label for="password">Password</label>
-                <input id="password" type="password">
+                <input id="password" type="password" formControlName="password" name="password">
             </div>
 
-            <button class="width-100 button" (click)="makeLogin()">Login</button>
+            <button class="width-100 button" (click)="logUser()">Login</button>
         </form>
 
         <mat-divider class="divider"></mat-divider>
