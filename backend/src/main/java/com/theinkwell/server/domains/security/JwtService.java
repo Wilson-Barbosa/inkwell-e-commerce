@@ -2,8 +2,6 @@ package com.theinkwell.server.domains.security;
 
 import java.time.Instant;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -13,7 +11,6 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.auth0.jwt.interfaces.Verification;
 import com.theinkwell.server.domains.user.exception.AuthenticationException;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,12 +22,10 @@ import jakarta.servlet.http.HttpServletRequest;
 @Service
 public class JwtService {
 
-    private static final Logger logger = LoggerFactory.getLogger(JwtService.class);
-
-    @Value("${inkwell.server.jwt.token-daration}")
+    @Value("${inkwell.server.jwt.token-duration}")
     private int tokenDurationMiliseconds;
 
-    @Value("${inkwell.server.jwt.token-daration}")
+    @Value("${inkwell.server.jwt.secret-key}")
     private String jwtSecret;
     
     /** 
@@ -43,12 +38,13 @@ public class JwtService {
 
         Algorithm algorithm = Algorithm.HMAC256(jwtSecret);
         Instant issueAt = Instant.now();
+        String role = userDetails.getAuthorities().iterator().next().getAuthority();
 
         String token = JWT.create()
                     .withClaim("email", userDetails.getUsername())
-                    .withClaim("role", userDetails.getUsername())
-                    .withIssuedAt(issueAt.plusMillis(tokenDurationMiliseconds))
-                    .withExpiresAt(issueAt)
+                    .withClaim("role", role)
+                    .withIssuedAt(issueAt)
+                    .withExpiresAt(issueAt.plusMillis(tokenDurationMiliseconds))
                     .withIssuer("inkwell")
                     .sign(algorithm);
 
@@ -67,8 +63,7 @@ public class JwtService {
 
         String bearerToken = request.getHeader("Authorization");
 
-        if(bearerToken != null && bearerToken.startsWith("Bearer: ")){
-            logger.debug(bearerToken.substring(7));
+        if(bearerToken != null && bearerToken.startsWith("Bearer ")){
             return bearerToken.substring(7);
         } else {
             throw new AuthenticationException("JWT token is not present or the Authorization header is not formatted properly");
@@ -81,12 +76,12 @@ public class JwtService {
      * @param request the http request containing an Authorization header
      * 
      * @return the user's email if the token is valid (i.e the signature is intact)
-     * @throws JWTVerificationException if the token is invalid or one was not provided
+     * @throws JWTVerificationException if the token is invalid or if one was not provided
      */
     public String isTokenValid(HttpServletRequest request){
 
         String token = getJwtFromHeader(request);
-        Algorithm algorithm = Algorithm.HMAC256(token);
+        Algorithm algorithm = Algorithm.HMAC256(jwtSecret);
         DecodedJWT decodedJWT;
 
         try {
@@ -100,7 +95,7 @@ public class JwtService {
             return decodedJWT.getClaim("email").asString();
 
         } catch (JWTVerificationException e) {
-            logger.error(e.getMessage());
+            e.printStackTrace();
             throw e;
         }
     }

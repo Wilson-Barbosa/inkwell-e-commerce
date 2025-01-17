@@ -17,12 +17,18 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Entity @Table(name = "Admin")
+@Entity
+@Table(name = "Admin")
 @PrimaryKeyJoinColumn(name = "person_id")
 @Inheritance(strategy = InheritanceType.JOINED)
-@Getter @Setter @AllArgsConstructor @NoArgsConstructor 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @ToString(callSuper = true)
 public class Admin extends Person{
+
+    private String name;
     
     @OneToMany(mappedBy = "createdBy")
     private List<Product> createdProducts;

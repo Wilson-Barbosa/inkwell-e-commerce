@@ -20,10 +20,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Entity @Table(name = "Customer")
+@Entity
+@Table(name = "Customer")
 @PrimaryKeyJoinColumn(name = "person_id")
 @Inheritance(strategy = InheritanceType.JOINED)
-@Setter @Getter @AllArgsConstructor @NoArgsConstructor
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 @ToString(callSuper = true)
 public class Customer extends Person {
     

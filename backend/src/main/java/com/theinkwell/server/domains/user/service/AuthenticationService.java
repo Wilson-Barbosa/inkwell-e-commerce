@@ -35,6 +35,9 @@ public class AuthenticationService implements UserDetailsService{
         this.jwtService = jwtService;
     }
 
+    /**
+     * Overrides the UserDetailsService's loadUserByUsername() method
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
         return personRepository.getUserCredentialsByEmail(username);
@@ -51,13 +54,14 @@ public class AuthenticationService implements UserDetailsService{
 
         if (loadUserByUsername(request.getEmail()) == null) {   
 
-            Person newUser = new Customer();      
+            Customer newUser = new Customer();
+            newUser.setFirstName(request.getFirstName());      
             newUser.setEmail(request.getEmail());   
             newUser.setPassword(passwordEncoder.encode(request.getPassword()));
             newUser.setCreatedAt(Instant.now());
             newUser.setRole(roleRepository.findById(2).get()); // id 2 corresponds to the customer role
 
-            personRepository.save(newUser);
+            personRepository.save((Person)newUser);
 
         } else {
             throw new UserAlreadyRegisteredException("User already registered");

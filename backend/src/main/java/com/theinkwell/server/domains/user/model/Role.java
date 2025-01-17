@@ -1,6 +1,5 @@
 package com.theinkwell.server.domains.user.model;
 
-import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -20,10 +19,16 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
-@Entity @Table(name = "Role")
-@Getter @Setter @AllArgsConstructor @NoArgsConstructor
+@Entity
+@Table(name = "Role")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString
 public class Role implements GrantedAuthority{
 
     @Id

@@ -9,16 +9,17 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig {  
+public class SecurityConfig {
       
     /**
      * Defines a custom security filter chain to be applied before http requests.
      */
     @Bean
-    SecurityFilterChain createCustomSecurityFilterChain(HttpSecurity http) throws Exception {
+    SecurityFilterChain createCustomSecurityFilterChain(HttpSecurity http, AuthJwtFilter authJwtFilter) throws Exception {
 
         String urlPath = "/api/v1";
 
@@ -26,8 +27,8 @@ public class SecurityConfig {
                                                        .requestMatchers(urlPath + "/auth/login").permitAll()
                                                        .requestMatchers("/h2-console/**").permitAll()
                                                        .requestMatchers(urlPath + "/products/**").permitAll()
-                                                       .requestMatchers(urlPath + "/admin/**").hasRole("ADMIN")
-                                                       .requestMatchers(urlPath + "/customer/**").hasRole("CUSTOMER")
+                                                       .requestMatchers(urlPath + "/admins/**").hasAuthority("ADMIN")
+                                                       .requestMatchers(urlPath + "/customers/**").hasAuthority("CUSTOMER")
                                                        .anyRequest().authenticated()
         );
 
@@ -36,7 +37,10 @@ public class SecurityConfig {
 
         // this makes the authentication STATELESS, setting up the jwt feature
         http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-       
+
+        // adds the jwt filter before UsernamePasswordAuthenticationFilter
+        http.addFilterBefore(authJwtFilter, UsernamePasswordAuthenticationFilter.class);
+
         return http.build();
     }
 

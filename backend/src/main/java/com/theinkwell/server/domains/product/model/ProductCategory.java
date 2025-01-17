@@ -15,8 +15,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Entity @Table(name = "Product_category")
-@Getter @Setter @AllArgsConstructor @NoArgsConstructor
+@Entity
+@Table(name = "Product_category")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
 public class ProductCategory {

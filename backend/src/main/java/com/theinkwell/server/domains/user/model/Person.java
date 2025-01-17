@@ -16,13 +16,13 @@ import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  * <p>Class that models a Person (i.e a user of the system).</p>
@@ -33,15 +33,19 @@ import lombok.Setter;
  * is a reserved keyword and althought there are ways around it. I found
  * just naming it like this to be simpler.</p>
  */
-@Entity @Table(name = "Person")
+@Entity
+@Table(name = "Person")
 @Inheritance(strategy = InheritanceType.JOINED)
-@Getter @Setter @AllArgsConstructor @NoArgsConstructor
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString
 public class Person implements UserDetails {
 
     @Id
-    @SequenceGenerator(name = "person_seq", sequenceName = "person_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "person_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Long id;
     private String email;
@@ -54,8 +58,9 @@ public class Person implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<Role> roles = new ArrayList<>();
-        return roles;
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(role);
+        return authorities;
     }
 
     @Override

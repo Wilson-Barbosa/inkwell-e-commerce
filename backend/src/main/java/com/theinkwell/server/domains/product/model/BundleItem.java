@@ -14,8 +14,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Entity @Table(name = "Bundle_item")
-@Setter @Getter @AllArgsConstructor @NoArgsConstructor
+@Entity
+@Table(name = "Bundle_item")
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
 public class BundleItem {

@@ -24,9 +24,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Entity @Table(name = "Product")
+@Entity
+@Table(name = "Product")
 @Inheritance(strategy = InheritanceType.JOINED)
-@Getter @Setter @AllArgsConstructor @NoArgsConstructor 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
 public abstract class Product implements Serializable {
