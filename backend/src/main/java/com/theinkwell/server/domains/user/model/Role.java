@@ -9,6 +9,7 @@ import com.theinkwell.server.domains.user.enums.RoleEnum;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -28,7 +29,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@ToString
+@ToString(exclude = "person")
 public class Role implements GrantedAuthority{
 
     @Id
@@ -39,7 +40,7 @@ public class Role implements GrantedAuthority{
     @Enumerated(EnumType.STRING)
     private RoleEnum role;
 
-    @OneToMany(mappedBy = "role")
+    @OneToMany(mappedBy = "role", fetch = FetchType.EAGER)
     private List<Person> person;
 
     public Role(RoleEnum role) {

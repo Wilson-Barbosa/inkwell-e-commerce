@@ -7,7 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import com.theinkwell.server.domains.utils.StandardException;
+import com.theinkwell.server.domains.security.exceptions.UserAlreadyRegisteredException;
+import com.theinkwell.server.domains.utils.WebResponseExceptionBody;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -15,26 +16,15 @@ import jakarta.servlet.http.HttpServletRequest;
 public class UserExceptionHandler {
     
     @ExceptionHandler(UserAlreadyRegisteredException.class)
-    public ResponseEntity<StandardException> handleUserAlreadyRegisteredException(HttpServletRequest request,
+    public ResponseEntity<WebResponseExceptionBody> handleUserAlreadyRegisteredException(HttpServletRequest request,
                                                                                   Exception e){
         
-        StandardException responseBody = new StandardException();
+        WebResponseExceptionBody responseBody = new WebResponseExceptionBody();
         responseBody.setMessage(e.getMessage());
         responseBody.setTime(Instant.now());
         responseBody.setPath(request.getRequestURI());        
                                                                                     
         return ResponseEntity.status(HttpStatus.CONFLICT).body(responseBody);
-    }
-
-    @ExceptionHandler(AuthenticationException.class)
-    public ResponseEntity<StandardException> handleAuthenticationException(HttpServletRequest request, Exception e) {
-        
-        StandardException responseBody = new StandardException();
-        responseBody.setMessage(e.getMessage());
-        responseBody.setTime(Instant.now());
-        responseBody.setPath(request.getRequestURI());
-
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(responseBody);                                                                 
     }
 
 

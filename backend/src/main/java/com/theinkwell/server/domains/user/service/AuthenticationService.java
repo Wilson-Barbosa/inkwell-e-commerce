@@ -9,11 +9,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.theinkwell.server.domains.security.JwtService;
+import com.theinkwell.server.domains.security.exceptions.CustomAuhenticationException;
+import com.theinkwell.server.domains.security.exceptions.UserAlreadyRegisteredException;
 import com.theinkwell.server.domains.user.dto.LoginRequest;
 import com.theinkwell.server.domains.user.dto.LoginResponse;
 import com.theinkwell.server.domains.user.dto.RegisterRequest;
-import com.theinkwell.server.domains.user.exception.AuthenticationException;
-import com.theinkwell.server.domains.user.exception.UserAlreadyRegisteredException;
 import com.theinkwell.server.domains.user.model.Customer;
 import com.theinkwell.server.domains.user.model.Person;
 import com.theinkwell.server.domains.user.repository.PersonRepository;
@@ -75,22 +75,30 @@ public class AuthenticationService implements UserDetailsService{
      * @param dto the user credentials
      * @return a dto containing a jwt token
      * 
-     * @throws AuthenticationException if the email does not exist or if the passwords do not match
+     * @throws CustomAuhenticationException if the email does not exist or if the passwords do not match
      */
     public LoginResponse logUserAndReturnToken(LoginRequest dto){
         
         UserDetails user = loadUserByUsername(dto.getEmail());
 
         if(user == null) {
-            throw new AuthenticationException("Email does not exist.");
+            throw new CustomAuhenticationException("Email does not exist.");
         }
 
         if(!passwordEncoder.matches(dto.getPassword(), user.getPassword())) {
-            throw new AuthenticationException("Password does not match");
+            throw new CustomAuhenticationException("Password does not match");
         }
 
         return  new LoginResponse(jwtService.generateJwtToken(user));
     }
 
+
+    /**
+     * Calls the JwtService to perform a logout operation
+     * @param token the jwt token
+     */
+    public void logoutUser(String token){
+        jwtService.addTokenToBlackList(token);
+    }
     
 }

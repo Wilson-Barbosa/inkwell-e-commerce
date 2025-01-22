@@ -11,6 +11,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.theinkwell.server.domains.security.exceptions.AuthenticationExceptionHandler;
+import com.theinkwell.server.domains.security.exceptions.AuthorizationExeceptionHandler;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -19,7 +22,8 @@ public class SecurityConfig {
      * Defines a custom security filter chain to be applied before http requests.
      */
     @Bean
-    SecurityFilterChain createCustomSecurityFilterChain(HttpSecurity http, AuthJwtFilter authJwtFilter) throws Exception {
+    SecurityFilterChain createCustomSecurityFilterChain(HttpSecurity http, AuthJwtFilter authJwtFilter,
+            AuthenticationExceptionHandler authenticationHandler, AuthorizationExeceptionHandler authorizationHandler) throws Exception {
 
         String urlPath = "/api/v1";
 
@@ -41,6 +45,8 @@ public class SecurityConfig {
         // adds the jwt filter before UsernamePasswordAuthenticationFilter
         http.addFilterBefore(authJwtFilter, UsernamePasswordAuthenticationFilter.class);
 
+        http.exceptionHandling(execeptionHandling -> execeptionHandling.authenticationEntryPoint(authenticationHandler));
+        http.exceptionHandling(exceptionHandling -> exceptionHandling.accessDeniedHandler(authorizationHandler));
         return http.build();
     }
 

@@ -11,6 +11,9 @@ import com.theinkwell.server.domains.user.dto.LoginRequest;
 import com.theinkwell.server.domains.user.dto.LoginResponse;
 import com.theinkwell.server.domains.user.dto.RegisterRequest;
 import com.theinkwell.server.domains.user.service.AuthenticationService;
+import com.theinkwell.server.domains.utils.JwtUtils;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("api/v1/auth")
@@ -40,5 +43,11 @@ public class AuthenticationController {
                              .body(authenticationService.logUserAndReturnToken(requestDto));
     }
 
+
+    @PostMapping("logout")
+    public ResponseEntity<Void> logUserOut(HttpServletRequest request){
+        authenticationService.logoutUser(JwtUtils.extractTokenFromHeader(request.getHeader("Authorization")));
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
 
 }
