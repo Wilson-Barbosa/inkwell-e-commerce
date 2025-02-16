@@ -7,17 +7,22 @@
             <div class="flex-column">
                 <label for="email">Email</label>
                 <input id="email" type="email" formControlName="email" name="email">
+                <app-form-error-message [message]="emailErrorMessage"></app-form-error-message>
             </div>
 
             <div class="flex-column">
                 <label for="password">Password</label>
                 <input id="password" type="password" formControlName="password" name="password">
+                <app-form-error-message [message]="passwordError"></app-form-error-message>
             </div>
 
-            <button class="width-100 button" (click)="logUser()">Login</button>
+            <button *ngIf="!isLoginExecuting" class="width-100 button" (click)="logUser()">Login</button>
+            <app-loading-spinner *ngIf="isLoginExecuting" [message]="'Login...'"></app-loading-spinner>
+            <button class="width-100 button" (click)="openDialog()">open modal</button>
         </form>
 
         <mat-divider class="divider"></mat-divider>
+        <p class="login-option">Don't have an account?<a [routerLink]="'/register'">Register</a></p>
         <p class="login-option">Don't have an account?<a [routerLink]="'/register'">Register</a></p>
     </mat-card-content>
 

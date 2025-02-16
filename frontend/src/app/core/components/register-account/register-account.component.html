@@ -19,7 +19,8 @@
                 <input id="password" type="password" formControlName="password" name="password">
             </div>
 
-            <button class="width-100 button" (click)="registerAccount()">Register</button>
+            <button *ngIf="!isRegisterExecuting" class="width-100 button" (click)="registerAccount()">Register</button>
+            <app-loading-spinner *ngIf="isRegisterExecuting" [message]="'Registering...'"></app-loading-spinner>
         </form>
 
         <mat-divider class="divider"></mat-divider>

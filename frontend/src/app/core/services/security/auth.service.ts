@@ -3,7 +3,8 @@ import { jwtDecode } from "jwt-decode";
 import { BehaviorSubject } from 'rxjs';
 import { Payload } from '../../../models/user/Payload';
 import { HttpHeaders } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ExpiredSessionDialogComponent } from '../../../shared/expired-session-dialog/expired-session-dialog.component';
 
 /**
  * Service responsible for managing user Session within the application.
@@ -13,12 +14,12 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
-    constructor(private router: Router) {
+    constructor(private dialogService: MatDialog) {
         if (this.isTokenExpired()) {
             this.isUserLogged$ = new BehaviorSubject(false);
         } else {
             this.isUserLogged$ = new BehaviorSubject(true);
-            this.setUpExpirationTimer(new Date().getMilliseconds(), Number(this.getExpDateFromLocalStorage()) * 1000);
+            this.setUpExpirationTimer(new Date().getTime(), Number(this.getExpDateFromLocalStorage()) * 1000);
         }
     }
 
@@ -43,20 +44,24 @@ export class AuthService {
 
         this.updateLoggedState(true);
 
-        this.setUpExpirationTimer(decodedToken.iat, decodedToken.exp);
+        this.setUpExpirationTimer(Date.now(), decodedToken.exp * 1000);
+
+        console.log("The token saved is: " + token);
     }
 
     /**
      * Method that sets up a timer making it so when the token expires the logout operation is
      * perfomed and the user is notified of it.
      *
-     * @param iat can be either the current time or the time when the token was issued in milliseconds
-     * @param exp the expiration time in milliseconds
+     * @param date can be either the current time or the time when the token was issued in milliseconds
+     * @param tokenExpiration the expiration time in milliseconds
      */
-    private setUpExpirationTimer(iat: number, exp: number): void {
+    private setUpExpirationTimer(dateMs: number, tokenExpirationMs: number): void {
+
         setTimeout(() => {
-            this.performLogout();
-        }, (exp - iat) * 1000);
+            this.emitSessionExpiredNotification();
+            this.removeUserInfoFromLocalStorage();
+        }, tokenExpirationMs - dateMs);
     }
 
     /**
@@ -65,13 +70,13 @@ export class AuthService {
      * @returns true if the token is expired and false if not
      */
     private isTokenExpired(): boolean {
-        const currentDate: Date = new Date();
+        const currentDateMs: number = Date.now();
 
         if (this.getExpDateFromLocalStorage() === null) {
             return true;
         }
 
-        if (currentDate > new Date(Number(this.getExpDateFromLocalStorage()) * 1000)) {
+        if (currentDateMs > Number(this.getExpDateFromLocalStorage()) * 1000) {
             return true;
         }
 
@@ -84,8 +89,11 @@ export class AuthService {
      * @returns an http header with the token for authentication
      */
     getAuthorizationHeader(): HttpHeaders {
+
+        console.log(`Sending Token: [${localStorage.getItem("token")}]`);
+
         return new HttpHeaders({
-            Authorization: `Bearer: ${localStorage.getItem("token")}`
+            Authorization: `Bearer ${localStorage.getItem("token")}`
         });
     }
 
@@ -105,26 +113,17 @@ export class AuthService {
         this.isUserLogged$.next(isLogged);
     }
 
-    /**
-     * There are lots of ways to handle this logout feature. The right approach would be to
-     * create a blacklist so that the server can invalidate unexpired tokens. For simplicity
-     * and convience I'm TEMPORARILY just removing the data from the localStorage, but this will
-     * be changed very soon, as to not get in the way of implementing other important features.
-     *
-     * TODO: change this logout apporach to a blacklist in spring server (maybe use redis for it)
-     */
-    performLogout(): void {
 
-        alert("the jwt token has expired");
-
+    removeUserInfoFromLocalStorage(): void {
         localStorage.removeItem("email");
         localStorage.removeItem("role");
         localStorage.removeItem("token");
         localStorage.removeItem("exp");
 
         this.updateLoggedState(false);
-
-        this.router.navigateByUrl("/home");
     }
 
+    emitSessionExpiredNotification(): void {
+        this.dialogService.open(ExpiredSessionDialogComponent);
+    }
 }

@@ -1,4 +1,4 @@
-import { ThemeServiceService } from './themes/services/theme-service.service';
+import { ThemeServiceService } from './themes/services/theme.service';
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from "./core/components/navbar/navbar.component";
@@ -13,30 +13,11 @@ import { NgIf } from '@angular/common';
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss'
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
     title = 'inkwell';
 
-    constructor(private themeService: ThemeServiceService) {}
-
-
-    ngOnInit(): void {
-        // Sets the initial theme upon component initialization
-        this.themeService.setTheme(this.themeService.getCurrentTheme());
-    }
-
-
-    setDarkMode(): void {
-        this.themeService.setTheme(ThemeType.DARK);
-    }
-
-    setLightMode(): void {
-        this.themeService.setTheme(ThemeType.LIGHT);
-    }
-
-    getActiveTheme(): string {
-        return this.themeService.getCurrentTheme();
-    }
+    constructor() {}
 
 }
 

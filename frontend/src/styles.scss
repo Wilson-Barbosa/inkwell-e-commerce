@@ -84,3 +84,49 @@ body {
 }
 
 
+@mixin user-dashboard {
+    nav {
+        display: flex;
+        flex-grow: 1;
+    }
+
+    nav>ul {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        padding: 0;
+        padding: 0.5rem;
+
+        height: 100%;
+
+        list-style: none;
+
+        background-color: var(--primary);
+    }
+
+    nav>ul>a {
+        text-decoration: none;
+        padding: 0.7rem;
+
+        &:visited,
+        &:link {
+
+            color: var(--secondary);
+        }
+
+        &:hover {
+            color: var(--white);
+        }
+    }
+
+    nav>ul>a>li {
+        cursor: pointer;
+        color: var(--secondary);
+        font-weight: 500;
+    }
+
+    nav>ul>a>li>i {
+        margin-right: 1rem;
+    }
+}

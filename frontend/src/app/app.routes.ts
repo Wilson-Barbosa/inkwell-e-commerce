@@ -5,32 +5,35 @@ import { RegisterAccountComponent } from './core/components/register-account/reg
 import { ContactComponent } from './pages/contact/contact.component';
 import { SearchProductComponent } from './pages/search-product/search-product.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { UserPageComponent } from './pages/user/user-page/user-page.component';
-import { UserReviewsComponent } from './pages/user/user-reviews/user-reviews.component';
-import { PurchaseHistoryComponent } from './pages/user/purchase-history/purchase-history.component';
-import { FavoritesComponent } from './pages/user/favorites/favorites.component';
-import { PreferencesComponent } from './pages/user/preferences/preferences.component';
-import { ProfileComponent } from './pages/user/profile/profile.component';
 import { ProductPageComponent } from './pages/product-page/product-page.component';
+import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-dashboard.component';
+import { CustomerDashboardComponent } from './pages/customer/customer-dashboard/customer-dashboard.component';
+import { AdminGuardService } from './core/services/security/admin-guard.service';
+import { CustomerGuardService } from './core/services/security/customer-guard.service';
+import { CustomerProfileComponent } from './pages/customer/customer-profile/customer-profile.component';
+import { CustomerReviewsComponent } from './pages/customer/customer-reviews/customer-reviews.component';
 
 export const routes: Routes = [
 
     // public routes
-    { path: 'home', component: HomeComponent },
-    { path: 'login', component: LoginComponent },
-    { path: 'register', component: RegisterAccountComponent },
-    { path: 'contact-us', component: ContactComponent },
+    { path: 'home', component: HomeComponent, title: "Home" },
+    { path: 'login', component: LoginComponent, title: "Login Page" },
+    { path: 'register', component: RegisterAccountComponent, title: "Register" },
+    { path: 'contact-us', component: ContactComponent, title: "Contact Page" },
     { path: 'search-product', component: SearchProductComponent },
     { path: 'product-page/:id', component: ProductPageComponent },
 
-    // protected routes, available only to logged users
-    { path: 'user-page', component: UserPageComponent,
+    // protected admin routes
+    { path: 'admin/dashboard', component: AdminDashboardComponent, canActivate: [AdminGuardService] },
+
+    // protected customer routes
+    { path: 'customer/dashboard',
+        component: CustomerDashboardComponent,
+        canActivate: [CustomerGuardService],
+        canActivateChild: [CustomerGuardService],
         children: [
-            { path: 'profile', component: ProfileComponent},
-            { path: 'purchase-history', component: PurchaseHistoryComponent },
-            { path: 'my-reviews', component: UserReviewsComponent },
-            { path: 'favorites', component: FavoritesComponent},
-            { path: 'preferences', component: PreferencesComponent}
+            { path: 'my-profile', component: CustomerProfileComponent },
+            { path: 'my-reviews', component: CustomerReviewsComponent }
         ]
     },
 

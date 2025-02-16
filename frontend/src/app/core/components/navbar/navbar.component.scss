@@ -21,7 +21,6 @@ li {
     cursor: pointer;
     color: var(--secondary);
     font-weight: 500;
-
 }
 
 a {
@@ -41,3 +40,20 @@ a {
 h5 {
     margin: 0;
 }
+
+
+.round {
+    border-radius: 50%;
+    height: 1.5rem;
+    width: 1.5rem;
+
+    border: 1px solid var(--white);
+
+    cursor: pointer;
+
+    font-size: 0.7rem;
+
+    background-color: var(--secondary);
+    color: var(--primary);
+}
+

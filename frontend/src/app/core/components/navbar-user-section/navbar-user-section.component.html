@@ -1,15 +1,21 @@
 <!-- Display this for not logged users -->
 <div *ngIf="!isUserLogged" class="flex text-secondary">
-    <div class="font-container"><i class="bi bi-cart4"></i></div>
+    <app-shopping-cart-counter></app-shopping-cart-counter>
     <a [routerLink]="'/login'">Login</a>
     <span class="text-warning">|</span>
     <a [routerLink]="'/register'">Register</a>
+
+    <app-theme-selector></app-theme-selector>
 </div>
 
 <!-- Display this for logged users -->
 <div *ngIf="isUserLogged" class="flex text-secondary" >
-    <div class="font-container"><i class="bi bi-cart4"></i></div>
-    <a [routerLink]=" 'user-page' "><span>{{userEmail}}</span></a>
+    <app-shopping-cart-counter></app-shopping-cart-counter>
+    <a class="pointer-cursor" (click)="navigateToDashboard()"><span>{{userEmail}}</span></a>
     <i class="bi bi-caret-down-fill"></i>
     <button (click)="logout()">logout</button>
+
+    <app-theme-selector></app-theme-selector>
 </div>
+
+

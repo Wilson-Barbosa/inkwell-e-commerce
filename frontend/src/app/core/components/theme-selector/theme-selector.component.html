@@ -1,0 +1,9 @@
+
+<div *ngIf="getActiveTheme() === 'dark' " class="round" (click)="setLightMode()" >
+    <i class="bi bi-sun-fill"></i>
+</div>
+
+<div *ngIf="getActiveTheme() === 'light' " class="round" (click)="setDarkMode()" >
+    <i class="bi bi-moon-stars-fill"></i>
+</div>
+

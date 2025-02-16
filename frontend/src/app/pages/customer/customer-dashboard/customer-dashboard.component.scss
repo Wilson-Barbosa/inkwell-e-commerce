@@ -1,0 +1,40 @@
+a {
+    text-decoration: none;
+    padding: 0.7rem;
+
+    &:visited,
+    &:link {
+        color: var(--secondary);
+    }
+
+    &:hover {
+        color: var(--white);
+    }
+}
+
+ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    padding: 0;
+    padding: 0.5rem;
+
+    height: 100%;
+
+    list-style: none;
+
+    background-color: var(--primary);
+}
+
+
+li {
+    cursor: pointer;
+    color: var(--secondary);
+    font-weight: 500;
+}
+
+
+i {
+    margin-right: 1rem;
+}
